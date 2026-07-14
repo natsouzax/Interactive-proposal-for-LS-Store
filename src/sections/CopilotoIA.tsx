@@ -58,7 +58,10 @@ export default function CopilotoIA() {
               </div>
             </div>
 
-            <div className="h-[380px] space-y-4 overflow-y-auto p-4 sm:h-[400px] sm:p-6">
+            <div
+              data-lenis-prevent
+              className="h-[380px] space-y-4 overflow-y-auto p-4 sm:h-[400px] sm:p-6"
+            >
               <AnimatePresence>
                 {messages.map((msg, i) => (
                   <motion.div

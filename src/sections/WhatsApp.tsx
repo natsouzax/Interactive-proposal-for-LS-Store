@@ -72,7 +72,7 @@ export default function WhatsApp() {
                   </div>
                 </div>
 
-                <div className="min-h-0 flex-1 overflow-y-auto p-3">
+                <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto p-3">
                   <div className="space-y-1.5">
                     {messageLines.slice(0, visibleLines).map((line, i) => {
                       if (!line) return <div key={i} className="h-1" />;

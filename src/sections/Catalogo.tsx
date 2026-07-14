@@ -128,7 +128,7 @@ export default function Catalogo() {
             </button>
           </div>
 
-          <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-2">
+          <div data-lenis-prevent className="scrollbar-hide flex gap-2 overflow-x-auto pb-2">
             {categories.map((cat) => (
               <button
                 key={cat}
