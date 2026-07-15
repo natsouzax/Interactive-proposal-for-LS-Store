@@ -19,12 +19,25 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const title = "LS Store — O Futuro do Varejo Digital";
+const description =
+  "Uma plataforma desenvolvida para transformar visitantes em clientes utilizando tecnologia, experiência e inteligência artificial.";
+
 export const metadata: Metadata = {
-  title: "LS Store — O Futuro do Varejo Digital",
-  description:
-    "Uma plataforma desenvolvida para transformar visitantes em clientes utilizando tecnologia, experiência e inteligência artificial.",
-  icons: {
-    icon: "/favicon.ico",
+  metadataBase: new URL("https://ls-store.vercel.app"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: "LS Store",
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 
