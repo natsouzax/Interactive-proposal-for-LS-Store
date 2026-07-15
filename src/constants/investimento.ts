@@ -31,7 +31,7 @@ export const investmentPlans = {
   },
 };
 
-export const hourlyRate = 40;
+export const hourlyRate = 35;
 export const estimatedHours = 80;
 export const regularPrice = hourlyRate * estimatedHours;
 
