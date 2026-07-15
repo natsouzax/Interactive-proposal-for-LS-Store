@@ -54,3 +54,6 @@ export const deliveryWeeks = [
       "Dashboard (BI), integrações, testes, responsividade, otimizações e publicação.",
   },
 ];
+
+export const priceDisclaimerNote =
+  "Os valores acima podem ser reajustados de acordo com mudanças de escopo ou novas ideias que surjam ao longo do projeto. Esta é uma condição promocional de base para o projeto apresentado.";

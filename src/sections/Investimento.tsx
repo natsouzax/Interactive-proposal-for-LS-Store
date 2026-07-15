@@ -1,4 +1,4 @@
-import { Sparkles, Shield, Check, Headphones, Clock } from "lucide-react";
+import { Sparkles, Shield, Check, Headphones, Clock, Info } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -14,6 +14,7 @@ import {
   developmentDays,
   developmentDeadlineNote,
   deliveryWeeks,
+  priceDisclaimerNote,
 } from "@/constants/investimento";
 
 export default function Investimento() {
@@ -145,6 +146,14 @@ export default function Investimento() {
               ))}
             </div>
           </div>
+        </Reveal>
+
+        <Reveal
+          variants={withDelay(fadeUp, 0.7)}
+          className="mt-6 flex items-start gap-2.5 rounded-2xl border border-gray-200 bg-white/60 p-4 sm:rounded-3xl sm:p-5"
+        >
+          <Info size={15} className="mt-0.5 shrink-0 text-gray-400" />
+          <p className="text-xs leading-relaxed text-gray-500">{priceDisclaimerNote}</p>
         </Reveal>
       </Container>
     </section>
