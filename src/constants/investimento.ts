@@ -30,3 +30,10 @@ export const investmentPlans = {
     label: "Mensal, cancele quando quiser",
   },
 };
+
+export const hourlyRate = 30;
+export const estimatedHours = 100;
+export const hoursPerDay = 4;
+export const workDays = ["Seg", "Ter", "Qua", "Qui", "Sex"] as const;
+export const regularPrice = hourlyRate * estimatedHours;
+export const weeksEstimate = estimatedHours / (hoursPerDay * workDays.length);

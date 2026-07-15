@@ -1,12 +1,19 @@
-import { Sparkles, Shield, Check, Headphones } from "lucide-react";
+import { Sparkles, Shield, Check, Headphones, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { withDelay, fadeUp } from "@/lib/motion";
+import { formatCurrency, cn } from "@/lib/utils";
 import {
   developmentFeatures,
   maintenanceFeatures,
   investmentPlans,
+  hourlyRate,
+  estimatedHours,
+  hoursPerDay,
+  workDays,
+  regularPrice,
+  weeksEstimate,
 } from "@/constants/investimento";
 
 export default function Investimento() {
@@ -37,11 +44,21 @@ export default function Investimento() {
               <p className="mt-1 text-xs text-gray-400">{investmentPlans.development.label}</p>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-2 flex flex-wrap items-baseline gap-3">
               <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-gray-900">
                 {investmentPlans.development.price}
               </span>
+              <span className="text-base text-gray-400 line-through">
+                {formatCurrency(regularPrice)}
+              </span>
+              <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-900">
+                Condição especial
+              </span>
             </div>
+            <p className="mb-8 text-xs text-gray-400">
+              {formatCurrency(hourlyRate)}/hora × {estimatedHours}h estimadas ={" "}
+              {formatCurrency(regularPrice)} — valor fechado em {investmentPlans.development.price}
+            </p>
 
             <div className="space-y-3">
               {developmentFeatures.map((feat) => (
@@ -93,6 +110,64 @@ export default function Investimento() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal
+          variants={withDelay(fadeUp, 0.6)}
+          className="mt-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:rounded-3xl sm:p-8"
+        >
+          <div className="mb-6 flex items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-50">
+              <Clock size={18} className="text-gray-500" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-gray-900">Cronograma</h3>
+              <p className="text-xs text-gray-400">
+                Prazo médio de {Math.round(weeksEstimate)} semanas — {estimatedHours}h distribuídas
+                ao longo da semana
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+            {["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"].map((day) => {
+              const isWorkDay = (workDays as readonly string[]).includes(day);
+              return (
+                <div
+                  key={day}
+                  className={cn(
+                    "flex flex-col items-center gap-1.5 rounded-xl border p-2 text-center sm:gap-2 sm:p-3",
+                    isWorkDay
+                      ? "border-gray-900 bg-gray-900"
+                      : "border-gray-100 bg-gray-50"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "text-[10px] font-medium uppercase tracking-wide sm:text-xs",
+                      isWorkDay ? "text-gray-300" : "text-gray-400"
+                    )}
+                  >
+                    {day}
+                  </span>
+                  <span
+                    className={cn(
+                      "text-xs font-bold sm:text-sm",
+                      isWorkDay ? "text-white" : "text-gray-300"
+                    )}
+                  >
+                    {isWorkDay ? `${hoursPerDay}h` : "—"}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="mt-6 text-xs text-gray-400">
+            {hoursPerDay}h/dia de {workDays[0]} a {workDays[workDays.length - 1]} ={" "}
+            {hoursPerDay * workDays.length}h/semana. O cronograma pode ser ajustado conforme a
+            prioridade do projeto.
+          </p>
+        </Reveal>
       </Container>
     </section>
   );
