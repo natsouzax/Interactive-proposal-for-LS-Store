@@ -31,9 +31,26 @@ export const investmentPlans = {
   },
 };
 
-export const hourlyRate = 30;
-export const estimatedHours = 100;
-export const hoursPerDay = 4;
-export const workDays = ["Seg", "Ter", "Qua", "Qui", "Sex"] as const;
+export const hourlyRate = 40;
+export const estimatedHours = 80;
 export const regularPrice = hourlyRate * estimatedHours;
-export const weeksEstimate = estimatedHours / (hoursPerDay * workDays.length);
+
+export const developmentDays = 20;
+export const developmentDeadlineNote =
+  "Contados a partir da aprovação da proposta e do recebimento de todo o material necessário (logo, identidade visual, informações da empresa, catálogo de produtos, fotos e demais conteúdos).";
+
+export const deliveryWeeks = [
+  {
+    week: 1,
+    description: "Planejamento, UX/UI, arquitetura e identidade visual.",
+  },
+  {
+    week: 2,
+    description: "Desenvolvimento do site, catálogo inteligente e painel administrativo.",
+  },
+  {
+    week: 3,
+    description:
+      "Dashboard (BI), integrações, testes, responsividade, otimizações e publicação.",
+  },
+];

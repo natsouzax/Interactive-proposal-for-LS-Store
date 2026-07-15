@@ -3,17 +3,17 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { withDelay, fadeUp } from "@/lib/motion";
-import { formatCurrency, cn } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 import {
   developmentFeatures,
   maintenanceFeatures,
   investmentPlans,
   hourlyRate,
   estimatedHours,
-  hoursPerDay,
-  workDays,
   regularPrice,
-  weeksEstimate,
+  developmentDays,
+  developmentDeadlineNote,
+  deliveryWeeks,
 } from "@/constants/investimento";
 
 export default function Investimento() {
@@ -120,53 +120,31 @@ export default function Investimento() {
               <Clock size={18} className="text-gray-500" />
             </div>
             <div>
-              <h3 className="text-base font-semibold text-gray-900">Cronograma</h3>
-              <p className="text-xs text-gray-400">
-                Prazo médio de {Math.round(weeksEstimate)} semanas — {estimatedHours}h distribuídas
-                ao longo da semana
+              <h3 className="text-base font-semibold text-gray-900">Prazo de desenvolvimento</h3>
+              <p className="mt-1 font-[family-name:var(--font-playfair)] text-2xl font-bold text-gray-900">
+                {developmentDays} dias corridos
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
-            {["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"].map((day) => {
-              const isWorkDay = (workDays as readonly string[]).includes(day);
-              return (
-                <div
-                  key={day}
-                  className={cn(
-                    "flex flex-col items-center gap-1.5 rounded-xl border p-2 text-center sm:gap-2 sm:p-3",
-                    isWorkDay
-                      ? "border-gray-900 bg-gray-900"
-                      : "border-gray-100 bg-gray-50"
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "text-[10px] font-medium uppercase tracking-wide sm:text-xs",
-                      isWorkDay ? "text-gray-300" : "text-gray-400"
-                    )}
-                  >
-                    {day}
-                  </span>
-                  <span
-                    className={cn(
-                      "text-xs font-bold sm:text-sm",
-                      isWorkDay ? "text-white" : "text-gray-300"
-                    )}
-                  >
-                    {isWorkDay ? `${hoursPerDay}h` : "—"}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <p className="mb-8 text-xs leading-relaxed text-gray-400">{developmentDeadlineNote}</p>
 
-          <p className="mt-6 text-xs text-gray-400">
-            {hoursPerDay}h/dia de {workDays[0]} a {workDays[workDays.length - 1]} ={" "}
-            {hoursPerDay * workDays.length}h/semana. O cronograma pode ser ajustado conforme a
-            prioridade do projeto.
-          </p>
+          <div className="border-t border-gray-100 pt-6">
+            <p className="mb-4 text-sm font-medium text-gray-700">Entregas previstas</p>
+            <div className="space-y-4">
+              {deliveryWeeks.map((item) => (
+                <div key={item.week} className="flex items-start gap-3">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white">
+                    {item.week}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Semana {item.week}</p>
+                    <p className="text-sm text-gray-500">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </Reveal>
       </Container>
     </section>
