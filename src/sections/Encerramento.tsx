@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { fadeUp, fadeIn, withDelay } from "@/lib/motion";
+import { whatsappLink } from "@/constants/contact";
 
 export default function Encerramento() {
   return (
@@ -38,7 +39,15 @@ export default function Encerramento() {
         </Reveal>
 
         <Reveal variants={withDelay(fadeUp, 0.8)}>
-          <Button as="a" href="#investimento" size="lg">
+          <Button
+            as="a"
+            href={whatsappLink(
+              "Olá! Vi a apresentação da LS Store e quero construir esse projeto com vocês."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+          >
             <Sparkles size={16} />
             Vamos construir juntos
           </Button>
